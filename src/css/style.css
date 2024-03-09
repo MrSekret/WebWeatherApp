@@ -1,0 +1,16 @@
+
+[class$=__container]{
+    max-width: 430px;
+    margin: 0 auto;
+  
+  }
+  
+  .wrapper{
+    font-size: 18px;
+    background: #383838;
+    color: #8f8f8f;
+    font-family: Poppins;
+    padding-top: 64px;
+  }
+  
+  /*------------------------------------------*/
