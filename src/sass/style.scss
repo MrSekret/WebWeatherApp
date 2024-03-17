@@ -1,10 +1,141 @@
+body{
+    background-image: url("../assets/img/background.png");
+    background-position: 268px 0; 
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+}
 
 
+[class$=__container] {
+    max-width: 1342px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
 
 .wrapper{
-    font-size: 18px;
-    background: #383838;
-    color: #8f8f8f;
-    font-family: Poppins;
-    padding-top: 64px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Nunito;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+//-----------------------------------------------------------------------
+
+.header{
+
+    &__container{
+        display: flex;
+        align-items: center;
+        margin-top: 48px;
+    }
+    &__text{
+        color: #BFBFD4;
+    }
+}
+
+
+//-----------------------------------------------------------------------
+
+.general{
+    margin-top: 160px;
+
+    &__contianer{
+        display: flex;
+        flex-direction: column;
+    }
+    &__textblock{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 56px;
+        
+        &-title{
+            margin-bottom: 8px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        &-text{
+            color: #BFBFD4;
+        }
+        span{
+            color: #8FB2F5;
+        }
+    }
+    &__inputblock{
+        position: relative;
+
+        &-input{
+            width: 100%;
+            
+            background-color: #1E1E29;
+            padding: 17px 20px;
+            border-radius: 8px;
+            border: none;
+        }
+        &-input:focus{
+            outline: none;
+        }
+        &-input::placeholder{
+            color: #7F7F98;
+            font-size: 16px;
+        }
+        &-input:not(:placeholder-shown) {
+            font-size: 16px;
+            color: #FAFAFA;
+        }
+        &-loader{
+            position: absolute;
+            top: 20px;
+            right: -50px;
+        }
+    }
+    &__citiesblock{
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        
+        &-city{
+            transition: 0.5s ease;
+            display: none;
+            position: absolute;
+            top: 49px;
+            opacity: 0  ;
+            width: 100%;
+            background-color: #3B3B54;
+            padding: 16px 20px;
+            font-size: 16px;
+            border-bottom: 1px solid #1E1E29;
+        }
+        &-city:first-child{
+            top: 0;
+            border-radius: 8px 8px 0 0;
+        }
+        &-city:last-child{
+            top: 98px;
+            border-radius: 0 0 8px 8px;
+            border-bottom: none;
+        }
+    }
+    &__notfound{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 36px;
+
+        &-img{
+            width: 80px;
+        }
+        &-text{
+            font-size: 24px;
+            margin-top: 9px;
+            font-weight: 600;
+            color: #7F7F98;
+        }
+    }
+}
+
+//-----------------------------------------------------------------------

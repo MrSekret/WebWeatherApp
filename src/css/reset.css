@@ -19,11 +19,9 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 	text-decoration: none;
-	color: #2f2f2f;
+	color: #FAFAFA;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

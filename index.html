@@ -8,13 +8,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/styles.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/loader.css">
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="icon" type="image/x-icon" href="./src/icon.png">
 </head>
 <body>
     <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <img src="./src/assets/img/logo.png" alt="" class="header__logo">
+                <h2 class="header__text">Weather App</h2>
+            </div>
+        </header>
         
+        <section class="general">
+            <div class="general__container">                
+                <div class="general__textblock">
+                    <h1 class="general__textblock-title">Welcome to <span>Weather App</span></h1>
+                    <p class="general__textblock-text">Choose a location to see the weather forecast</p>
+                </div>
+                <div class="general__inputblock">
+                    <input id="searchcity" type="text" class="general__inputblock-input" placeholder="Search location">
+                    <div id="loader" class="general__inputblock-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="general__citiesblock">
+                    <a href="#" class="general__citiesblock-city">Test</a>
+                    <a href="#" class="general__citiesblock-city">Test</a>
+                    <a href="#" class="general__citiesblock-city">Test</a>
+                </div>
+                <div class="general__notfound">
+                    <img src="./src/assets/img/magnifying-glass-icon.png" alt="magnifying-glass" class="general__notfound-img">
+                    <p class="general__notfound-text">Not found</p>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script type="module" src="./src/scripts/script.js"></script>
+    <script type="module" src="./src/scripts/requests.js"></script>
 </body>
 </html>
