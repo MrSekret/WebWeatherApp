@@ -28,6 +28,11 @@ body {
           align-items: center;
 }
 
+.active {
+  background-color: #BFBFD4 !important;
+  color: #3B3B54;
+}
+
 .header__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -44,7 +49,7 @@ body {
 .general {
   margin-top: 160px;
 }
-.general__contianer {
+.general__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,6 +57,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .general__textblock {
   display: -webkit-box;
@@ -79,6 +90,7 @@ body {
 }
 .general__inputblock {
   position: relative;
+  width: 100%;
 }
 .general__inputblock-input {
   width: 100%;
@@ -86,6 +98,8 @@ body {
   padding: 17px 20px;
   border-radius: 8px;
   border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .general__inputblock-input:focus {
   outline: none;
@@ -125,7 +139,7 @@ body {
 .general__inputblock-loader {
   position: absolute;
   top: 20px;
-  right: -50px;
+  right: -12px;
 }
 .general__citiesblock {
   margin-top: 8px;
@@ -137,8 +151,11 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  width: 100%;
 }
 .general__citiesblock-city {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
   display: none;
@@ -179,4 +196,13 @@ body {
   margin-top: 9px;
   font-weight: 600;
   color: #7F7F98;
+}
+
+@media (max-width: 768px) {
+  .general__textblock-title {
+    font-size: 28px;
+  }
+  .general__textblock-text {
+    font-size: 16px;
+  }
 }

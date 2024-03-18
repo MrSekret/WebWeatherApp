@@ -38,7 +38,6 @@ function showCities(){
         if(city.length>0 && counter<3){
             requestGeo(city).then(response => {
                 if(response.length!=0){
-                    console.log(response)
                     notfoundBlock.style.display = "none"
                     let duplicatesarr = []
                     for(let i=0; i<response.length; i++){

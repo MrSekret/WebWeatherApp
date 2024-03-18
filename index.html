@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/loader.css">
     <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/loader.css">
     <link rel="icon" type="image/x-icon" href="./src/icon.png">
 </head>
 <body>
@@ -29,7 +29,7 @@
                     <p class="general__textblock-text">Choose a location to see the weather forecast</p>
                 </div>
                 <div class="general__inputblock">
-                    <input id="searchcity" type="text" class="general__inputblock-input" placeholder="Search location">
+                    <input id="searchcity" type="text" class="general__inputblock-input" placeholder="Search location" autocomplete="off">
                     <div id="loader" class="general__inputblock-loader">
                         <div></div>
                         <div></div>
@@ -49,7 +49,8 @@
         </section>
     </div>
 
-    <script type="module" src="./src/scripts/script.js"></script>
+    <script type="module" src="./src/scripts/searchCities.js"></script>
+    <script type="module" src="./src/scripts/weatherPage.js"></script>
     <script type="module" src="./src/scripts/requests.js"></script>
 </body>
 </html>
