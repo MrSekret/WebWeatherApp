@@ -1,38 +1,29 @@
-import { requestGeo, requestWeather} from "./requests.js"
+import { requestGeo, requestLatLon, requestWeather} from "./requests.js"
+import { openWeatherPage, loadWeatherPage } from "./weatherPage.js"
 
 let SearchTimeout
 let EraseTimeout
 let LatLanArr = []
 const inputElement = document.getElementById('searchcity');
-const notfoundBlock = document.querySelector(".general__notfound")
+const loader = document.getElementById("loader")
+const notfoundBlock = document.querySelector(".start-page__notfound")
 inputElement.addEventListener('input', function(event) {
+    let inputValue = event.target.value
+    let newValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+    inputElement.value = newValue
     clearTimeout(SearchTimeout)
     clearTimeout(EraseTimeout)
     SearchTimeout = setTimeout(showCities, 2000)
     EraseTimeout = setTimeout(hideCities(inputElement.value), 1000)
-    var inputValue = event.target.value
     console.log("Изменение в инпуте:", inputValue)
 })
 
-function hideCities(input){
-    if(!input){
-        const cityBlock = document.querySelectorAll(".general__citiesblock-city")
-        for(let i=0; i<cityBlock.length; i++){
-            cityBlock[i].style.display = "none"
-            cityBlock[i].style.opacity = 0
-            cityBlock[i].style.top = `${cityBlock[i].style.top - 49}px`
-            cityBlock[i].style.borderBottomLeftRadius = `0px`
-            cityBlock[i].style.borderBottomRightRadius = `0px`
-        }
-        notfoundBlock.style.display = "none"
-        loader.style.display = "none"
-    }
-}
+
+
 function showCities(){
     let counter = 0
     let inputValue = inputElement.value
-    const loader = document.getElementById("loader")
-    const cityBlock = document.querySelectorAll(".general__citiesblock-city")
+    const cityBlock = document.querySelectorAll(".start-page__citiesblock-city")
     loader.style.display = "grid"
     const searchGeo = city => {
         if(city.length>0 && counter<3){
@@ -70,9 +61,89 @@ function showCities(){
     hideCities("")
     if(inputValue.length>0){
         searchGeo(inputValue)
+        addSelectListners()
+    }
+}
+function hideCities(input){
+    if(!input){
+        const cityBlock = document.querySelectorAll(".start-page__citiesblock-city")
+        for(let i=0; i<cityBlock.length; i++){
+            cityBlock[i].style.display = "none"
+            cityBlock[i].style.opacity = 0
+            cityBlock[i].style.top = `${cityBlock[i].style.top - 49}px`
+            cityBlock[i].style.borderBottomLeftRadius = `0px`
+            cityBlock[i].style.borderBottomRightRadius = `0px`
+        }
+        notfoundBlock.style.display = "none"
+        loader.style.display = "none"
     }
 }
 
+function addSelectListners(){
+    let currentIndex = -1
+    const cities = document.querySelectorAll(".start-page__citiesblock-city")
+    cities.forEach((cityblock, index) => {
+        cityblock.addEventListener('click', () => {
+            selectedCity(cityblock)
+        })
+        cityblock.addEventListener('mouseenter', () => {
+            setCurrentIndex(index)
+        })
+        cityblock.addEventListener('mouseleave', () => {
+            cityblock.classList.remove('active')
+        })
+        if (cityblock === currentIndex) {
+            cityblock.classList.add('active')
+        } else {
+            cityblock.classList.remove('active')
+        }
+    })
+    document.addEventListener('keydown', event => {
+        if (event.key === 'ArrowUp') {
+            currentIndex = Math.max(currentIndex - 1, 0)
+        } else if (event.key === 'ArrowDown') {
+            currentIndex = Math.min(currentIndex + 1, cities.length - 1)
+        } else if (event.key == 'Enter') {
+            cities.forEach(cityblock => {
+                if (cityblock.classList.contains('active')) {
+                    selectedCity(cityblock)
+                }
+            })
+        }
+        cities.forEach((city, index) => {
+            if (index === currentIndex) {
+                city.classList.add('active');
+            } else {
+                city.classList.remove('active');
+            }
+        });
+    })
+}
+async function selectedCity(cityelem){
+    const cities = document.querySelectorAll(".start-page__citiesblock-city")
+    const inputElem = document.getElementById("searchcity")
+    loader.style.display = "grid"
+    cities.forEach(elem => {
+        elem.style.display = "none"
+    })
+    inputElem.value = cityelem.innerHTML
+    inputElem.readOnly = true
+    inputElem.style.color = "#9E9EA0"
+    const [lat, lon] = await requestLatLon(cityelem.innerHTML.split(",")[0])
+    const weatherInfo = await requestWeather([lat, lon])
+    loadWeatherPage(cityelem.innerHTML, weatherInfo)
+    openWeatherPage()
+}
+function setCurrentIndex(index) {
+    const cities = document.querySelectorAll(".start-page__citiesblock-city")
+    cities.forEach((city, i) => {
+        if (i === index) {
+            city.classList.add('active')
+        } else {
+            city.classList.remove('active')
+        }
+    })
+}
 
 // requestGeo().then(response => {
 //     let lat = response[0].lat

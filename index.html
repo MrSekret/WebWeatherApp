@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/loader.css">
-    <link rel="icon" type="image/x-icon" href="./src/icon.png">
+    <link rel="icon" type="image/x-icon" href="./src/assets/img/logo.png">
 </head>
 <body>
     <div class="wrapper">
@@ -22,31 +22,128 @@
             </div>
         </header>
         
-        <section class="general">
-            <div class="general__container">                
-                <div class="general__textblock">
-                    <h1 class="general__textblock-title">Welcome to <span>Weather App</span></h1>
-                    <p class="general__textblock-text">Choose a location to see the weather forecast</p>
-                </div>
-                <div class="general__inputblock">
-                    <input id="searchcity" type="text" class="general__inputblock-input" placeholder="Search location" autocomplete="off">
-                    <div id="loader" class="general__inputblock-loader">
-                        <div></div>
-                        <div></div>
-                        <div></div>
+        <main class="page">
+            <section class="start-page">
+                <div class="start-page__container">                
+                    <div class="start-page__textblock">
+                        <h1 class="start-page__textblock-title">Welcome to <span>Weather App</span></h1>
+                        <p class="start-page__textblock-text">Choose a location to see the weather forecast</p>
+                    </div>
+                    <div class="start-page__inputblock">
+                        <input id="searchcity" type="text" class="start-page__inputblock-input" placeholder="Search location" autocomplete="off">
+                        <div id="loader" class="start-page__inputblock-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="start-page__citiesblock">
+                        <a href="#" class="start-page__citiesblock-city">Test</a>
+                        <a href="#" class="start-page__citiesblock-city">Test</a>
+                        <a href="#" class="start-page__citiesblock-city">Test</a>
+                    </div>
+                    <div class="start-page__notfound">
+                        <img src="./src/assets/img/magnifying-glass-icon.png" alt="magnifying-glass" class="start-page__notfound-img">
+                        <p class="start-page__notfound-text">Not found</p>
                     </div>
                 </div>
-                <div class="general__citiesblock">
-                    <a href="#" class="general__citiesblock-city">Test</a>
-                    <a href="#" class="general__citiesblock-city">Test</a>
-                    <a href="#" class="general__citiesblock-city">Test</a>
+            </section>
+
+            <section class="weather-page">
+                <div class="weather-page__container">
+                    <div class="weather-page__previewblock">
+                        <div class="weather-page__previewblock-search">
+                            <img src="./src/assets/img/logo.png" alt="Logo" class="weather-page__logo">
+                            <input id="searchcity" type="text" class="weather-page__input" placeholder="Search location" autocomplete="off">
+                        </div>
+                        <div class="weather-page__previewblock-info">
+                            <img src="./src/assets/img/bg_few_clouds_day.png" alt="" class="weather-page__previewblock-info-bg">
+                            <div class="weather-page__topblock">
+                                <div class="weather-page__topblock-titleblock">
+                                    <h2 class="weather-page__topblock-titleblock-title">Porto Alegre, RS</h2>
+                                    <p class="weather-page__topblock-titleblock-date">Segunda-feira, 15 de maio de 2023</p>
+                                </div>
+                                <p class="weather-page__topblock-time">00:00</p>
+                            </div>
+                            <div class="weather-page__botblock">
+                                <h1 class="weather-page__botblock-degrees">28ºc</h1>
+                                <div class="weather-page__botblock-description">
+                                    <p class="weather-page__botblock-avgdegrees">32ºc / 26ºc</p>
+                                    <div class="weather-page__botblock-decorimg"></div>
+                                    <p class="weather-page__botblock-text">Poucas nuvens</p>
+                                </div>
+                            </div>
+                            <img src="./src/assets/svg/rain_moment_day.svg" alt="" class="weather-page__previewblock-info-decor">
+                        </div>
+                    </div>
+                    <div class="weather-page__infoblocks">
+                        <div class="weather-page__infoblocks-today">
+                            <h2 class="weather-page__infoblocks-today-title">Today's weather details</h2>
+                            <div class="weather-page__details">
+                                <img src="./src/assets/svg/thermometer_simple_light.svg" alt="thermometer" class="weather-page__details-img">
+                                <p class="weather-page__details-text">Thermal sensation</p>
+                                <p class="weather-page__details-value_thermal-sensation">26ºc</p>
+                            </div>
+                            <div class="weather-page__details">
+                                <img src="./src/assets/svg/cloud_rain_light.svg" alt="cloud_rain" class="weather-page__details-img">
+                                <p class="weather-page__details-text">Probability of rain</p>
+                                <p class="weather-page__details-value_probability-of-rain">0%</p>
+                            </div>
+                            <div class="weather-page__details">
+                                <img src="./src/assets/svg/wind_light.svg" alt="wind" class="weather-page__details-img">
+                                <p class="weather-page__details-text">Wind speed</p>
+                                <p class="weather-page__details-value_wind-speed">8 m/s</p>
+                            </div>
+                            <div class="weather-page__details">
+                                <img src="./src/assets/svg/drop_light.svg" alt="drop" class="weather-page__details-img">
+                                <p class="weather-page__details-text">Air humidity</p>
+                                <p class="weather-page__details-value_air-humidity">40%</p>
+                            </div>  
+                            <div class="weather-page__details">
+                                <img src="./src/assets/svg/sun_dim_light.svg" alt="sun_dim" class="weather-page__details-img">
+                                <p class="weather-page__details-text">UV index</p>
+                                <p class="weather-page__details-value_UV-index">5</p>
+                            </div>
+                        </div>
+                        <div class="weather-page__infoblocks-nextdays">
+                            <h2 class="weather-page__infoblocks-nextdays-title">5 day forecast</h2>
+                            <div class="weather-page__forecast">
+                                <div class="weather-page__block">
+                                    <p class="weather-page__block-title">Tomorrow</p>
+                                    <img src="./src/assets/svg/clear_day.svg" alt="" class="weather-page__block-img">
+                                    <p class="weather-page__block-text">Clear sky</p>
+                                    <p class="weather-page__block-degrees">32ºc <span>26ºc</span></p>
+                                </div>
+                                <div class="weather-page__block">
+                                    <p class="weather-page__block-title">Tomorrow</p>
+                                    <img src="./src/assets/svg/clear_day.svg" alt="" class="weather-page__block-img">
+                                    <p class="weather-page__block-text">Clear sky</p>
+                                    <p class="weather-page__block-degrees">32ºc <span>26ºc</span></p>
+                                </div>
+                                <div class="weather-page__block">
+                                    <p class="weather-page__block-title">Tomorrow</p>
+                                    <img src="./src/assets/svg/clear_day.svg" alt="" class="weather-page__block-img">
+                                    <p class="weather-page__block-text">Clear sky</p>
+                                    <p class="weather-page__block-degrees">32ºc <span>26ºc</span></p>
+                                </div>
+                                <div class="weather-page__block">
+                                    <p class="weather-page__block-title">Tomorrow</p>
+                                    <img src="./src/assets/svg/clear_day.svg" alt="" class="weather-page__block-img">
+                                    <p class="weather-page__block-text">Clear sky</p>
+                                    <p class="weather-page__block-degrees">32ºc <span>26ºc</span></p>
+                                </div>
+                                <div class="weather-page__block">
+                                    <p class="weather-page__block-title">Tomorrow</p>
+                                    <img src="./src/assets/svg/clear_day.svg" alt="" class="weather-page__block-img">
+                                    <p class="weather-page__block-text">Clear sky</p>
+                                    <p class="weather-page__block-degrees">32ºc <span>26ºc</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="general__notfound">
-                    <img src="./src/assets/img/magnifying-glass-icon.png" alt="magnifying-glass" class="general__notfound-img">
-                    <p class="general__notfound-text">Not found</p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </div>
 
     <script type="module" src="./src/scripts/searchCities.js"></script>

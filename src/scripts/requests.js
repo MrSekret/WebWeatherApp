@@ -10,8 +10,13 @@ export async function requestGeo(city){
         console.log(err)
     }
 }
-export async function requestWeather(lat, lon){
-    const urlweather = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`
+export async function requestLatLon(city){
+    return requestGeo(city).then(response => {
+        return [response[0].lat, response[0].lon]
+    })
+}
+export async function requestWeather(coords){
+    const urlweather = `https://api.openweathermap.org/data/2.5/weather?lat=${coords[0]}&lon=${coords[1]}&appid=${APIkey}`
     try {
         const response = await fetch(urlweather)
         return await response.json()

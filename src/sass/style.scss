@@ -25,9 +25,25 @@ body{
     background-color: #BFBFD4!important;
     color: #3B3B54;
 }
+.fadeIn{
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 //-----------------------------------------------------------------------
 
 .header{
+    // display: none;
+    transition: 0.5s ease;
 
     &__container{
         display: flex;
@@ -41,9 +57,14 @@ body{
 
 
 //-----------------------------------------------------------------------
-
-.general{
+.page{
     margin-top: 160px;
+}
+//-----------------------------------------------------------------------
+
+.start-page{
+    // display: none;
+    transition: 0,5s ease;
 
     &__container{
         display: flex;
@@ -73,25 +94,6 @@ body{
         position: relative;
         width: 100%;
 
-        &-input{
-            width: 100%;
-            background-color: #1E1E29;
-            padding: 17px 20px;
-            border-radius: 8px;
-            border: none;
-            box-sizing: border-box;
-        }
-        &-input:focus{
-            outline: none;
-        }
-        &-input::placeholder{
-            color: #7F7F98;
-            font-size: 16px;
-        }
-        &-input:not(:placeholder-shown) {
-            font-size: 16px;
-            color: #FAFAFA;
-        }
         &-loader{
             position: absolute;
             top: 20px;
@@ -147,19 +149,235 @@ body{
 }
 
 @media (max-width: 768px) {
-    .general{
-
-        &__citiesblock{
-            
+    .start-page__textblock{
+        &-title{
+            font-size: 28px;
         }
-        &__textblock{
-            &-title{
-                font-size: 28px;
-            }
-            &-text{
-                font-size: 16px;
-            }
+        &-text{
+            font-size: 16px;
         }
     }
 }
+
+#searchcity{
+    width: 100%;
+    background-color: #1E1E29;
+    padding: 17px 20px;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+}
+#searchcity:focus{
+    outline: none;
+}
+#searchcity::placeholder{
+    color: #7F7F98;
+    font-size: 16px;
+}
+#searchcity:not(:placeholder-shown) {
+    font-size: 16px;
+    color: #FAFAFA;
+}
 //-----------------------------------------------------------------------
+
+.weather-page{
+    display: none;
+
+    &__container{
+        display: flex;
+    }
+    &__previewblock{
+        padding: 16px;
+        background-color: #16161F;
+        border-radius: 12px;
+
+        &-search{
+            display: flex;
+            align-items: center;
+        }
+        &-info{
+            margin-top: 16px;
+            position: relative;
+            z-index: 10;
+        
+            &-bg{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                max-height: 616px;
+                border-radius: 8px;
+            }
+            &-decor{
+                position: absolute;
+                bottom: -40px;
+                right: -20px;
+                z-index: -1;
+                width: 40%;
+            }
+        }
+    }
+    &__logo{
+        padding: 4.5px;
+        margin-right: 12px;
+        background-color: #1E1E29;
+        border-radius: 8px;
+    }
+    
+    &__topblock{
+        padding: 32px 32px 0 32px;
+        display: flex;
+
+        &-titleblock{
+            margin-right: 260px;
+
+            &-title{
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+            &-date{
+                font-size: 16px;
+            }
+        }
+        &-time{
+            font-weight: 700;
+        }
+    }
+    &__botblock{
+        padding: 4px;
+        margin: 350px 0 36px 32px;
+
+        &-degrees{
+            font-weight: 900;
+            font-size: 96px;
+            margin-bottom: 12px;
+        }
+        &-description{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            line-height: 140%;
+        }
+        &-avgdegrees{
+            font-weight: 700;
+        }
+        &-decorimg{
+            width: 8px;
+            height: 8px;
+            background-color: hsla(0, 0%, 100%, 0.4);
+            border-radius: 4px;
+        }
+    }
+
+
+
+    &__infoblocks{
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+        
+        &-today{
+            padding: 28px 24px 8px 24px;
+            background-color: #16161F;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &-title{
+                font-size: 16px;
+                color: #7F7F98;
+                margin-bottom: 36px;
+                padding-right: 410px;
+                line-height: 140%;
+            }
+        }
+        &-nextdays{
+            background-color: #16161F;
+            display: flex;
+            flex-direction: column;
+            padding: 28px 24px 24px 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+
+            &-title{
+                font-size: 16px;
+                color: #7F7F98;
+                line-height: 140%;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    &__details{
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 16px 0;
+
+        &-img{
+            max-width: 100%;
+            height: auto;
+            margin-right: 12px;
+            float: left;
+            position: relative;
+        }
+        &-text{
+            position: relative;
+            float: left;
+            color: #BFBFD4;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        [class^="weather-page__details-value"]{
+            position: absolute;
+            right: 0;
+            float: right;
+        }
+    }
+    &__forecast{
+        display: flex;
+        align-items: center;
+    }
+    &__block{
+        padding:  28.5px 24.7px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-title,
+        &-text,
+        &-degrees{
+            color: #BFBFD4;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &-img{
+            max-width: 67px;
+            height: auto;
+            margin: 12px 0;
+        }
+        &-degrees{
+            margin-top: 4px;
+            color: #FAFAFA;
+        }
+        &-degrees span{
+            color: #7F7F98;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    body{
+        overflow: scroll;
+    }
+    .weather-page{
+        
+        &__container{
+            flex-direction: column;
+        }
+        &__forecast{
+            flex-direction: column;
+        }
+    }
+}

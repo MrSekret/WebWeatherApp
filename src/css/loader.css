@@ -13,13 +13,13 @@
       -webkit-transform: scale(1);
               transform: scale(1); } }
   
-  .general__inputblock-loader {
+  .start-page__inputblock-loader {
     display: none;
     transition: 0.3s display ease;
     height: 10px;
     grid-gap: 4.5px;
     grid-template-columns: repeat(5, 10px); }
-    .general__inputblock-loader div {
+    .start-page__inputblock-loader div {
       -webkit-animation: scaling-dots 1s infinite ease backwards;
               animation: scaling-dots 1s infinite ease backwards;
       background: var(--primary);
@@ -27,12 +27,12 @@
       height: 9px;
       background-color: #8FB2F5;
       width: 9px; }
-      .general__inputblock-loader div:nth-child(1) {
+      .start-page__inputblock-loader div:nth-child(1) {
         -webkit-animation-delay: 0.1s;
                 animation-delay: 0.1s; }
-      .general__inputblock-loader div:nth-child(2) {
+      .start-page__inputblock-loader div:nth-child(2) {
         -webkit-animation-delay: 0.2s;
                 animation-delay: 0.2s; }
-      .general__inputblock-loader div:nth-child(3) {
+      .start-page__inputblock-loader div:nth-child(3) {
         -webkit-animation-delay: 0.3s;
                 animation-delay: 0.3s; }
