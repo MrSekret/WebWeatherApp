@@ -384,6 +384,8 @@ body{
         overflow: scroll;
     }
     .weather-page{
+        margin-bottom: 25px;
+
         &__container{
             flex-direction: column;
         }

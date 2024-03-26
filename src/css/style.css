@@ -487,6 +487,9 @@ body {
   body {
     overflow: scroll;
   }
+  .weather-page {
+    margin-bottom: 25px;
+  }
   .weather-page__container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
