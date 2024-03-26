@@ -1,6 +1,6 @@
 let APIkey
 let APIkey2
-fetch('../../api.json')
+fetch('./src/scripts/api.json')
   .then(response => response.json())
   .then(data => {
     APIkey = data.api.key1
