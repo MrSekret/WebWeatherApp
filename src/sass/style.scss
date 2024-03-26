@@ -250,6 +250,7 @@ body{
             &-title{
                 font-weight: 700;
                 margin-bottom: 8px;
+                white-space: nowrap;
             }
             &-date{
                 font-size: 16px;
@@ -284,9 +285,6 @@ body{
             border-radius: 4px;
         }
     }
-
-
-
     &__infoblocks{
         display: flex;
         flex-direction: column;
@@ -460,8 +458,8 @@ body{
                 margin: 4px 0;
             }
         }
-        &__block:not(:last-child){
-            margin-right: 14px;
+        &__forecast{
+            justify-content: space-between;
         }
     }
 }

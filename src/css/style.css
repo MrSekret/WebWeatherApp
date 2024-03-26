@@ -332,6 +332,7 @@ body {
 .weather-page__topblock-titleblock-title {
   font-weight: 700;
   margin-bottom: 8px;
+  white-space: nowrap;
 }
 .weather-page__topblock-titleblock-date {
   font-size: 16px;
@@ -558,7 +559,9 @@ body {
     max-width: 56px;
     margin: 4px 0;
   }
-  .weather-page__block:not(:last-child) {
-    margin-right: 14px;
+  .weather-page__forecast {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 }
