@@ -1,5 +1,5 @@
 body{
-    background-image: url("../assets/img/background.png");
+    background-image: url("../assets/png/background.png");
     background-position: 268px 0; 
     width: 100vw;
     height: 100vw;
@@ -96,7 +96,7 @@ body{
 
         &-loader{
             position: absolute;
-            top: 20px;
+            top: 22px;
             right: -12px;
         }
     }
@@ -149,12 +149,15 @@ body{
 }
 
 @media (max-width: 768px) {
+    .header__text{
+        font-size: 26px;
+    }
     .start-page__textblock{
         &-title{
-            font-size: 28px;
+            font-size: 20px;
         }
         &-text{
-            font-size: 16px;
+            font-size: 14px;
         }
     }
 }
@@ -182,6 +185,7 @@ body{
 
 .weather-page{
     display: none;
+    transition: 0.5s opacity ease;
 
     &__container{
         display: flex;
@@ -206,7 +210,7 @@ body{
                 left: 0;
                 z-index: -1;
                 width: 100%;
-                max-height: 616px;
+                height: 616px;
                 border-radius: 8px;
             }
             &-decor{
@@ -224,10 +228,21 @@ body{
         background-color: #1E1E29;
         border-radius: 8px;
     }
+    &__inputblock{
+        position: relative;
+        width: 100%;
+
+        &-loader{
+            position: absolute;
+            top: 22px;
+            right: -12px;
+        }
+    }
     
     &__topblock{
         padding: 32px 32px 0 32px;
         display: flex;
+        justify-content: space-between;
 
         &-titleblock{
             margin-right: 260px;
@@ -316,7 +331,7 @@ body{
         margin: 16px 0;
 
         &-img{
-            max-width: 100%;
+            max-width: 32px;
             height: auto;
             margin-right: 12px;
             float: left;
@@ -361,9 +376,6 @@ body{
             margin-top: 4px;
             color: #FAFAFA;
         }
-        &-degrees span{
-            color: #7F7F98;
-        }
     }
 }
 
@@ -372,12 +384,82 @@ body{
         overflow: scroll;
     }
     .weather-page{
-        
         &__container{
             flex-direction: column;
         }
-        &__forecast{
-            flex-direction: column;
+        &__previewblock-info{
+            &-bg{
+                height: 304px;
+            }
+            &-decor{
+                right: 0;
+                bottom: -5px;
+            }
+        }
+        &__topblock{
+            padding: 20px 20px 0 20px;
+
+            &-time{
+                font-size: 12px;
+            }
+            &-titleblock{
+                margin-right: 0;
+
+                &-title{
+                    font-size: 16px;
+                }
+                &-date{
+                    font-size: 12px;
+                }
+            }
+        }
+        &__botblock{
+            margin: 144px 0 0 16px;
+
+            &-degrees{
+                font-size: 48px;
+            }
+            &-avgdegrees{
+                font-size: 16px;
+            }
+            &-decorimg{
+                display: none;
+            }
+            &-text{
+                font-size: 14px;
+            }
+        }
+        &__infoblocks{
+            margin-left: 0px;
+            
+            &-today-title{
+                display: none;
+            }
+            &-nextdays-title{
+                display: none;
+            }
+        }
+        &__details{
+            &-img{
+                max-width: 24px;
+            }
+            [class^="weather-page__details-value"]{
+                font-size: 16px;
+            }
+        }
+        &__block{
+            padding: 0;
+    
+            &-text{
+                display: none;
+            }
+            &-img{
+                max-width: 56px;
+                margin: 4px 0;
+            }
+        }
+        &__block:not(:last-child){
+            margin-right: 14px;
         }
     }
 }
