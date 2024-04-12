@@ -1,5 +1,4 @@
-console.log(import.meta.env)
-let APIkey = import.meta.env.WEATHERAPIKEY
+let APIkey = process.env.WEATHERAPIKEY
 // let APIkey2 = process.env.APIkey2
 
 export async function requestGeo(city){
