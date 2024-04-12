@@ -23,6 +23,7 @@ jobs:
       run: npx webpack --env=production
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
+        WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload Artifact
@@ -32,6 +33,4 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
-      env: 
-        WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
         
