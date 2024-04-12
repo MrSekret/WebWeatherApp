@@ -33,6 +33,5 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: peaceiris/actions-gh-pages@v3
-      with: 
-        WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
+      with:
         publish_branch: gh-pages
