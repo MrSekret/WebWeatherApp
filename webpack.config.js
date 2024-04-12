@@ -28,6 +28,9 @@ module.exports = {
     new HtmlWebpackPlugin({
         template: "./src/index.html"
     }),
+    new webpack.DefinePlugin({
+        APIkey: JSON.stringify(WEATHERAPIKEY),
+    }),
     new CopyPlugin({
     patterns: [
         { from: './src/assets/png', to: './assets/png' },

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://MrSekret.github.io/WebWeatherApp",
   "description": "📌 [Weather App](https://mrsekret.github.io/WebWeatherApp/)",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=development&&webpack serve --open",
     "dev": "set NODE_ENV=development&&webpack",
