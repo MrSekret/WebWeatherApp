@@ -20,7 +20,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup Node
       uses: actions/setup-node@v4
-    - run: npx webpack --env=production
+    - name: Webpack build
+      run: npx webpack --env=production
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
     - name: Setup Pages
