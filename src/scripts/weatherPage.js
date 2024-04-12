@@ -29,6 +29,8 @@ const wrapper = document.querySelector(".wrapper")
 const inputElemWeather = document.querySelector(".weather-page__input")
 const inputElemStart = document.querySelector('.start-page__inputblock-input');
 
+const weatherPage__logo= document.getElementById("weather-page__logo")
+
 const Qualitativenames = {
     1: "Good",
     2: "Fair",
@@ -43,6 +45,17 @@ inputElemWeather.addEventListener('input', function(event) {
     inputElemWeather.value = newValue
     clearTimeout(SearchTimeout)
     SearchTimeout = setTimeout(showStartPage, 1500)
+})
+weatherPage__logo.addEventListener('click', function(event){
+    startpage()
+    const zeroSettings = {
+        isCitySelected: false,
+        currentcity: "",
+        weatherInfo: "",
+        forecastInfo: "",
+        airPollutionInfo: ""
+    }
+    localStorage.setItem('settings', JSON.stringify(zeroSettings))
 })
 
 let SearchTimeout
@@ -145,7 +158,7 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
     weatherPage__botblockDegrees.innerHTML = `${temp}ºc`
     weatherPage__botblockAvgdegrees.innerHTML = `${tempmax}ºc / ${tempmin}ºc`
     weatherPage__botblockText.innerHTML = description[0].toUpperCase() + description.substring(1, description.length)
-    if(time[0]=="2" && time[1]>"0"){
+    if((time[0]=="2" && time[1]>"0") || (time[0]=="0" && time[1]<"5")){
         let weatherPathPNG = weatherPathSVG[1].replace('svg', 'png').replace('.svg', '.png')
         weatherPage__previewblockInfoBg.src = weatherPathPNG.substring(0, 13) + "bg_" + weatherPathPNG.substring(13)
         weatherPage__previewblockInfoDecor.src = weatherPathSVG[1]
