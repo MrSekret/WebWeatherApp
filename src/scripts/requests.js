@@ -1,5 +1,5 @@
 let APIkey = process.env.APIkey
-let APIkey2 = process.env.APIkey2
+// let APIkey2 = process.env.APIkey2
 
 export async function requestGeo(city){
     const apiGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIkey}`
@@ -31,7 +31,7 @@ export async function requestWeather(coords){
     }
 }
 export async function requestAirPollution(coords){
-    const apiAirPollution = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coords[0]}&lon=${coords[1]}&appid=${APIkey2}`
+    const apiAirPollution = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coords[0]}&lon=${coords[1]}&=${APIkey}`
     try {
         const response = await fetch(apiAirPollution)
         return await response.json()
@@ -40,7 +40,7 @@ export async function requestAirPollution(coords){
     }
 }
 export async function requestForecast(coords){
-    const apiForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${coords[0]}&lon=${coords[1]}&appid=${APIkey2}&units=metric`
+    const apiForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${coords[0]}&lon=${coords[1]}&appid=${APIkey}&units=metric`
     try {
         const response = await fetch(apiForecast)
         return await response.json()

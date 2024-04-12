@@ -29,7 +29,7 @@ module.exports = {
         template: "./src/index.html"
     }),
     new webpack.DefinePlugin({
-        APIkey: JSON.stringify(WEATHERAPIKEY),
+        'process.env.APIkey': JSON.stringify(WEATHERAPIKEY),
     }),
     new CopyPlugin({
     patterns: [
