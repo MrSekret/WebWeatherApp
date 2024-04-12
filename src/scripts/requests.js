@@ -31,7 +31,7 @@ export async function requestWeather(coords){
     }
 }
 export async function requestAirPollution(coords){
-    const apiAirPollution = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coords[0]}&lon=${coords[1]}&=${APIkey2}`
+    const apiAirPollution = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coords[0]}&lon=${coords[1]}&appid=${APIkey2}`
     try {
         const response = await fetch(apiAirPollution)
         return await response.json()
