@@ -34,6 +34,11 @@ module.exports = {
         { from: './src/assets/svg', to: './assets/svg' }
     ]
     }),
+    new webpack.DefinePlugin({
+        'process.env': {
+            WEATHERAPIKEY: JSON.stringify(process.env.WEATHERAPIKEY),
+        },
+      }),
   ],
   module: {
     rules: [
