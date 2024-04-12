@@ -73,9 +73,15 @@ function showStartPage(){
     showCities()
 }
 
-export function openWeatherPage(){
+export function openWeatherPage(fastanime = false){
+    if(fastanime){
+        header.style.transition = "none"
+        startpage.style.transition = "none"
+    }
     header.style.opacity = 0
     startpage.style.opacity = 0
+    const settingsString = JSON.parse(localStorage.getItem('settings'))
+    console.log(settingsString)
 
     setTimeout(() => {
         wrapper.style.alignItems = "normal"
@@ -84,6 +90,10 @@ export function openWeatherPage(){
         weatherpage.style.display = "block"
         weatherpage.style.opacity = 1
         page.style.marginTop = "40px"
+        if(fastanime) { 
+            header.style.transition = "0.5s ease"
+            startpage.style.transition = "0.5s ease"
+        }
 
         weatherPage__previewblock.classList.add("fadeIn")
         weatherPage__infoblocksToday.classList.add("fadeIn")
@@ -93,23 +103,24 @@ export function openWeatherPage(){
 export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionInfo){
 
     const forecastImg = {
-        200: ["./src/assets/svg/storm_day.svg", "./src/assets/svg/storm_night.svg"],
-        300: ["./src/assets/svg/rain_moment_day.svg", "./src/assets/svg/rain_moment_night.svg"],
-        500: ["./src/assets/svg/rain_moment_day.svg", "./src/assets/svg/rain_moment_night.svg"],
-        600: ["./src/assets/svg/snow_day.svg", "./src/assets/svg/snow_night.svg"],
-        781: ["./src/assets/svg/cloudy_day.svg", "./src/assets/svg/cloudy_night.svg"],
-        700: ["./src/assets/svg/cloudy_day.svg", "./src/assets/svg/cloudy_night.svg"],
-        800: ["./src/assets/svg/clear_day.svg", "./src/assets/svg/clear_night.svg"],
-        801: ["./src/assets/svg/few_clouds_day.svg", "./src/assets/svg/few_clouds_night.svg"],
-        802: ["./src/assets/svg/cloudy_day.svg", "./src/assets/svg/cloudy_night.svg"]
+        200: ["./assets/svg/storm_day.svg", "./assets/svg/storm_night.svg"],
+        300: ["./assets/svg/rain_moment_day.svg", "./assets/svg/rain_moment_night.svg"],
+        500: ["./assets/svg/rain_moment_day.svg", "./assets/svg/rain_moment_night.svg"],
+        600: ["./assets/svg/snow_day.svg", "./assets/svg/snow_night.svg"],
+        781: ["./assets/svg/cloudy_day.svg", "./assets/svg/cloudy_night.svg"],
+        700: ["./assets/svg/cloudy_day.svg", "./assets/svg/cloudy_night.svg"],
+        800: ["./assets/svg/clear_day.svg", "./assets/svg/clear_night.svg"],
+        801: ["./assets/svg/few_clouds_day.svg", "./assets/svg/few_clouds_night.svg"],
+        802: ["./assets/svg/cloudy_day.svg", "./assets/svg/cloudy_night.svg"]
     }
     const forecastImgKeys = Object.keys(forecastImg)
     function updateWeatherTime() {
-        const dateUTC = new Date()
-        dateUTC.setSeconds(dateUTC.getSeconds() + weatherInfo.timezone)
-        const time = dateUTC.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+        const now = new Date();
+        const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+        utc.setSeconds(utc.getSeconds() + weatherInfo.timezone)
+        const time = utc.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
         weatherPage__topblockTime.innerHTML = time
-        return [dateUTC, time]
+        return [utc, time]
     }
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dateAndTime = updateWeatherTime()
@@ -118,7 +129,7 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
     const formattedDate = date.toLocaleDateString('en-US', options);
     weatherPage__topblockTitleblockTitle.innerHTML = title
     weatherPage__topblockTitleblockDate.innerHTML = formattedDate
-    setInterval(updateWeatherTime, 6000)
+    const intervalUpdateTime = setInterval(updateWeatherTime, 6000)
 
     const temp = Math.round(weatherInfo.main.temp)
     const tempmax = Math.round(weatherInfo.main.temp_max)
@@ -136,11 +147,11 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
     weatherPage__botblockText.innerHTML = description[0].toUpperCase() + description.substring(1, description.length)
     if(time[0]=="2" && time[1]>"0"){
         let weatherPathPNG = weatherPathSVG[1].replace('svg', 'png').replace('.svg', '.png')
-        weatherPage__previewblockInfoBg.src = weatherPathPNG.substring(0, 17) + "bg_" + weatherPathPNG.substring(17)
+        weatherPage__previewblockInfoBg.src = weatherPathPNG.substring(0, 13) + "bg_" + weatherPathPNG.substring(13)
         weatherPage__previewblockInfoDecor.src = weatherPathSVG[1]
     }else{ 
         let weatherPathPNG = weatherPathSVG[0].replace('svg', 'png').replace('.svg', '.png')
-        weatherPage__previewblockInfoBg.src = weatherPathPNG.substring(0, 17) + "bg_" + weatherPathPNG.substring(17)
+        weatherPage__previewblockInfoBg.src = weatherPathPNG.substring(0, 13) + "bg_" + weatherPathPNG.substring(13)
         weatherPage__previewblockInfoDecor.src = weatherPathSVG[0]
     }
 
@@ -154,7 +165,6 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
     weatherPage__detailsValue_windSpeed.innerHTML = `${windspeed} m/s`
     weatherPage__detailsValue_airHumidity.innerHTML = `${humidity}%`
     weatherPage__detailsValue_airPollution.innerHTML = airPollution
-
     for(let ind=0; ind<weatherBlocks.length; ind++){
         loadForecastNextDay(ind)
     }
@@ -184,4 +194,5 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
         weatherPage__blockText.innerHTML = description
         weatherPage__blockDegrees.innerHTML = `${temp}ºc`
     }
+    return intervalUpdateTime
 }

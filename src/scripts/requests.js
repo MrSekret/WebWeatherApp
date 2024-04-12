@@ -1,14 +1,5 @@
-let APIkey
-let APIkey2
-fetch('./src/scripts/api.json')
-  .then(response => response.json())
-  .then(data => {
-    APIkey = data.api.key1
-    APIkey2 = data.api.key2
-  })
-  .catch(error => {
-    console.error('There was a problem fetching the data:', error);
-  });
+let APIkey = process.env.APIkey
+let APIkey2 = process.env.APIkey2
 
 export async function requestGeo(city){
     const apiGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIkey}`
@@ -17,6 +8,12 @@ export async function requestGeo(city){
         return await response.json()
     } catch (err) {
         console.log(err)
+        const loader = document.getElementById("loader")
+        const notfoundBlock = document.querySelector(".start-page__notfound")
+        const startPage__notfoundText = notfoundBlock.querySelector("p")
+        loader.style.display = 'none'
+        notfoundBlock.style.display = "flex"
+        startPage__notfoundText.innerHTML = "Server is not responding."
     }
 }
 export async function requestLatLon(city){
