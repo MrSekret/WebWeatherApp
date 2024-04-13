@@ -35,7 +35,7 @@ jobs:
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
     - name: Clear gh-pages branch
       run: |
-        git checkout gh-pages || git checkout --orphan gh-pages
+        git checkout -B gh-pages origin/gh-pages || git checkout --orphan gh-pages
         git rm -r .
         git commit -m "Clear gh-pages branch" || true
         git push origin gh-pages
