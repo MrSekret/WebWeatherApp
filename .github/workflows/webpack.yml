@@ -35,14 +35,12 @@ jobs:
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
     - name: Clear gh-pages branch
       run: |
-        git fetch origin gh-pages
         git checkout gh-pages
         git rm -r .
         git commit -m "Clear gh-pages branch" || true
         git push origin gh-pages
     - name: Deploy to gh-pages
       run: |
-        git checkout gh-pages
         cp -r dist/* ./
         git add .
         git commit -m "Deploy to gh-pages branch"
