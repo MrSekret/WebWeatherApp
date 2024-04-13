@@ -1,32 +1,12 @@
 import { requestGeo, requestLatLon, requestWeather, requestAirPollution, requestForecast } from "./requests.js"
 import { openWeatherPage, loadWeatherPage } from "./weatherPage.js"
 
-
-let zeroSettings = {
-    isCitySelected: false,
-    currentcity: "",
-    weatherInfo: "",
-    forecastInfo: "",
-    airPollutionInfo: ""
-}
 let intervalUpdateTime
 let SearchTimeout
 let EraseTimeout
 const inputElement = document.querySelector('.start-page__inputblock-input');
 const loader = document.getElementById("loader")
 const notfoundBlock = document.querySelector(".start-page__notfound")
-loadSettings()
-function loadSettings() {
-    if(localStorage.getItem('settings') == null){
-        localStorage.setItem('settings', JSON.stringify(zeroSettings))
-    }
-    const settingsString = JSON.parse(localStorage.getItem('settings'))
-    if(settingsString.isCitySelected){
-        if (intervalUpdateTime !== undefined) clearInterval(intervalUpdateTime)
-        intervalUpdateTime = loadWeatherPage(settingsString.currentcity, settingsString.weatherInfo, settingsString.forecastInfo, settingsString.airPollutionInfo)
-        openWeatherPage(true)
-    }
-}
 
 inputElement.addEventListener('input', function(event) {
     let inputValue = event.target.value
@@ -37,6 +17,7 @@ inputElement.addEventListener('input', function(event) {
     SearchTimeout = setTimeout(showCities, 1500)
     EraseTimeout = setTimeout(hideCities(inputElement.value), 1000)
 })
+
 addSelectListners()
 function addSelectListners(){
     let currentIndex = -1

@@ -1,3 +1,4 @@
-prepros.config
-.code-workspace
+WeatherApp.code-workspace
 .env
+node_modules/
+dist/

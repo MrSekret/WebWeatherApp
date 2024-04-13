@@ -1,3 +1,4 @@
+
 import { showCities } from "./searchCities.js"
 
 const page = document.querySelector(".page")
@@ -30,6 +31,7 @@ const inputElemWeather = document.querySelector(".weather-page__input")
 const inputElemStart = document.querySelector('.start-page__inputblock-input');
 
 const weatherPage__logo= document.getElementById("weather-page__logo")
+const preloader = document.getElementById("loader")
 
 const Qualitativenames = {
     1: "Good",
@@ -38,16 +40,19 @@ const Qualitativenames = {
     4: "Poor",
     5: "Very Poor"
 }
+let SearchTimeout
 
 inputElemWeather.addEventListener('input', function(event) {
     let inputValue = event.target.value
     let newValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
     inputElemWeather.value = newValue
     clearTimeout(SearchTimeout)
-    SearchTimeout = setTimeout(showStartPage, 1500)
+    SearchTimeout = setTimeout(() => { 
+        showStartPage()
+        showCities()
+    }, 1500)
 })
-weatherPage__logo.addEventListener('click', function(event){
-    startpage()
+weatherPage__logo.addEventListener('click', () => {
     const zeroSettings = {
         isCitySelected: false,
         currentcity: "",
@@ -56,62 +61,61 @@ weatherPage__logo.addEventListener('click', function(event){
         airPollutionInfo: ""
     }
     localStorage.setItem('settings', JSON.stringify(zeroSettings))
+    preloader.style.display = "none"
+    showStartPage()
 })
 
-let SearchTimeout
 function showStartPage(){
-    header.style.opacity = 1
-    startpage.style.opacity = 1
+    startpage.style.display = "none"
     weatherpage.style.opacity = 0
     
     inputElemStart.readOnly = false
     inputElemStart.style.color = "#FAFAFA"
     inputElemStart.value = inputElemWeather.value
-
-    header.classList.add("fadeIn")
-    startpage.classList.add("fadeIn")
+    
     weatherPage__previewblock.classList.remove("fadeIn")
     weatherPage__infoblocksToday.classList.remove("fadeIn")
     weatherPage__infoblocksNextdays.classList.remove("fadeIn")
     
     setTimeout(() => {
+        header.classList.add("fadeIn")
+        startpage.classList.add("fadeIn")
         page.style.marginTop = "160px"
         wrapper.style.alignItems = "center"
-        weatherpage.style.display = "none"
         header.style.display = "block"
         startpage.style.display = "block"
+        header.style.opacity = 1
+        startpage.style.opacity = 1
+        weatherpage.style.display = "none"
         inputElemWeather.value = ""
     }, 700)
-
-    showCities()
 }
 
 export function openWeatherPage(fastanime = false){
     if(fastanime){
-        header.style.transition = "none"
-        startpage.style.transition = "none"
-    }
-    header.style.opacity = 0
-    startpage.style.opacity = 0
-    const settingsString = JSON.parse(localStorage.getItem('settings'))
-    console.log(settingsString)
-
-    setTimeout(() => {
-        wrapper.style.alignItems = "normal"
         header.style.display = "none"
         startpage.style.display = "none"
+        wrapper.style.alignItems = "normal"
         weatherpage.style.display = "block"
         weatherpage.style.opacity = 1
         page.style.marginTop = "40px"
-        if(fastanime) { 
-            header.style.transition = "0.5s ease"
-            startpage.style.transition = "0.5s ease"
-        }
+    }else{
+        header.style.opacity = 0
+        startpage.style.opacity = 0
 
-        weatherPage__previewblock.classList.add("fadeIn")
-        weatherPage__infoblocksToday.classList.add("fadeIn")
-        weatherPage__infoblocksNextdays.classList.add("fadeIn")
-    }, 700)
+        setTimeout(() => {
+            wrapper.style.alignItems = "normal"
+            header.style.display = "none"
+            startpage.style.display = "none"
+            weatherpage.style.display = "block"
+            weatherpage.style.opacity = 1
+            page.style.marginTop = "40px"
+
+            weatherPage__previewblock.classList.add("fadeIn")
+            weatherPage__infoblocksToday.classList.add("fadeIn")
+            weatherPage__infoblocksNextdays.classList.add("fadeIn")
+        }, 700)
+    }
 }
 export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionInfo){
 
