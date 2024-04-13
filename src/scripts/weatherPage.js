@@ -132,21 +132,24 @@ export function loadWeatherPage(title, weatherInfo, forecastInfo, airPollutionIn
     }
     const forecastImgKeys = Object.keys(forecastImg)
     function updateWeatherTime() {
-        const now = new Date();
+        const now = new Date()
         const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-        utc.setSeconds(utc.getSeconds() + weatherInfo.timezone)
+        const settings = JSON.parse(localStorage.getItem('settings'))
+        utc.setSeconds(utc.getSeconds() + settings.weatherInfo.timezone)
         const time = utc.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
         weatherPage__topblockTime.innerHTML = time
         return [utc, time]
     }
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     const dateAndTime = updateWeatherTime()
     const date = dateAndTime[0]
     const time = dateAndTime[1]
     const formattedDate = date.toLocaleDateString('en-US', options);
     weatherPage__topblockTitleblockTitle.innerHTML = title
     weatherPage__topblockTitleblockDate.innerHTML = formattedDate
-    const intervalUpdateTime = setInterval(updateWeatherTime, 6000)
+    let intervalUpdateTime
+    clearInterval(intervalUpdateTime)
+    intervalUpdateTime = setInterval(updateWeatherTime, 60000)
 
     const temp = Math.round(weatherInfo.main.temp)
     const tempmax = Math.round(weatherInfo.main.temp_max)

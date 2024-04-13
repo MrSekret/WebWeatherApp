@@ -135,8 +135,7 @@ async function selectedCity(cityelem){
         airPollutionInfo: airPollutionInfo
     }
     localStorage.setItem('settings', JSON.stringify(settings))
-    if (intervalUpdateTime !== undefined) clearInterval(intervalUpdateTime)
-    intervalUpdateTime = loadWeatherPage(cityelem.innerHTML, weatherInfo, forecastInfo, airPollutionInfo)
+    loadWeatherPage(cityelem.innerHTML, weatherInfo, forecastInfo, airPollutionInfo)
     openWeatherPage()
 }
 function setCurrentIndex(index) {
