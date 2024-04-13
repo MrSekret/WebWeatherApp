@@ -28,10 +28,21 @@ jobs:
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
     - name: Setup Pages
       uses: actions/configure-pages@v3
+    - name: Creating page branch
+      run: |
+        git checkout --orphan gh-pages
+        git add .
+        git commit -m "gh-pages folder content"
+        git push -u origin gh-pages
+        git checkout main
+        git submodule add -b gh-pages --https://github.com/MrSekret/WebWeatherApp dist
+        git commit -m "Add gh-pages branch as submodule"
+        git push
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v2
       with:
         path: './dist'
+        branch: gh-pages
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
