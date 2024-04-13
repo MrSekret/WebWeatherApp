@@ -35,10 +35,8 @@ jobs:
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
     - name: Clear gh-pages branch
       run: |
-        touch README.md
-        git add README.md
-        git commit -m "Initial commit"
-        git push origin gh-pages 
+        git fetch origin
+        git checkout gh-pages
         git rm -r .
         git commit -m "Clear gh-pages branch" || true
         git push origin gh-pages
