@@ -26,13 +26,6 @@ jobs:
       run: |
         git config user.email "mishased12@gmail.com"
         git config user.name "Mykhailo"
-    - name: Clear gh-pages branch
-      run: |
-        git fetch origin gh-pages
-        git checkout gh-pages
-        git rm -r .
-        git commit -m "Clear gh-pages branch" || true
-        git push origin gh-pages
     - name: Install dependencies
       run: npm install
     - name: Webpack build
@@ -40,6 +33,13 @@ jobs:
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
+    - name: Clear gh-pages branch
+      run: |
+        git fetch origin gh-pages
+        git checkout gh-pages
+        git rm -r .
+        git commit -m "Clear gh-pages branch" || true
+        git push origin gh-pages
     - name: Deploy to gh-pages
       run: |
         git checkout gh-pages
