@@ -33,14 +33,12 @@ jobs:
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
-    - name: Clear gh-pages branch
+    - name: Copy to gh-pages branch
       run: |
         git checkout -B gh-pages origin/gh-pages || git checkout --orphan gh-pages
-        git rm -r .
-        git commit -m "Clear gh-pages branch" || true
+        cp -r dist/* ./
     - name: Deploy to gh-pages
       run: |
-        cp -r dist/* ./
         git add .
         git commit -m "Deploy to gh-pages branch"
         git push origin gh-pages
