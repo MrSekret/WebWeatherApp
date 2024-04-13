@@ -21,6 +21,10 @@ jobs:
       uses: actions/setup-node@v4
     - name: Install dependencies
       run: npm install
+    - name: Set Git config
+      run: |
+        git config user.email "mishased12@gmail.com"
+        git config user.name "Mykhailo"
     - name: Webpack build
       run: npx webpack --env=production
       env: 
