@@ -26,7 +26,9 @@ jobs:
         git config user.email "mishased12@gmail.com"
         git config user.name "Mykhailo"
     - name: Webpack build
-      run: npx webpack --env=production
+      run: |
+        npx webpack --env=production
+        mkdir dist
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
@@ -34,9 +36,7 @@ jobs:
       run: |
         git checkout -B gh-pages origin/gh-pages || git checkout --orphan gh-pages
     - name: Copy built files to gh-pages branch
-      run: |
-          rm -rf ./*
-          cp -r dist/* ./
+      run: cp -r dist/* ./
     - name: Commit and push changes to gh-pages branch
       run: |
         git add .
