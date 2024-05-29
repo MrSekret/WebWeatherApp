@@ -13,8 +13,12 @@ module.exports = {
   entry: {
     index: './src/index.js',
     requests: './src/scripts/requests.js',
-    searchCities: './src/scripts/searchCities.js',
-    weatherPage: './src/scripts/weatherPage.js',
+    htmlElenets: './src/scripts/htmlElements.js',
+    loadLocalStorage: './src/scripts/loadLocalStorage.js',
+    indexWeather: './src/scripts/WeatherPage/index.js',
+    listnersWeather: './src/scripts/WeatherPage/listners.js',
+    indexSearch: './src/scripts/SearchPage/index.js',
+    listnersSearch: './src/scripts/SearchPage/listners.js'
   },
   output: {
     filename: '[name].[contenthash].js',
