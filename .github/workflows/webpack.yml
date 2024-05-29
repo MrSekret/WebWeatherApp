@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS with Webpack deploying to gh-pages
 
 on:
   push:
@@ -22,24 +22,24 @@ jobs:
         token: ${{ secrets.GH_ACCESS_TOKEN }}
     - name: Setup Node
       uses: actions/setup-node@v4
-    - name: Install dependencies
-      run: npm install
     - name: Set Git config
       run: |
         git config user.email "mishased12@gmail.com"
         git config user.name "Mykhailo"
+    - name: Install dependencies
+      run: npm install
     - name: Webpack build
       run: npx webpack --env=production
       env: 
         WEATHERAPIKEY: ${{ secrets.WEATHERAPIKEY }}
         WEATHERAPIKEY2: ${{ secrets.WEATHERAPIKEY2 }}
-    - name: Deploy to custom branch
+    - name: Copy to gh-pages branch
       run: |
         git checkout -B gh-pages origin/gh-pages || git checkout --orphan gh-pages
-    - name: Copy built files to gh-pages branch
-      run: cp -r dist/* ./
-    - name: Commit and push changes to gh-pages branch
+        cp -r dist/* ./
+    - name: Deploy to gh-pages
       run: |
+        git pull origin gh-pages
         git add .
         git commit -m "Deploy to gh-pages branch"
         git push origin gh-pages
