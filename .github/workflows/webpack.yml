@@ -42,7 +42,6 @@ jobs:
         cp -r dist/* ./
     - name: Deploy to gh-pages
       run: |
-        git pull origin gh-pages
         git add .
         git commit -m "Deploy to gh-pages branch"
         git push --force origin gh-pages
